@@ -1,0 +1,27 @@
+server:
+  port: 24000
+spring:
+  cloud:
+    stream:
+      binders:
+        test:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 192.168.79.128
+                port: 5672
+                username: guest
+                password: guest
+                virtual-host: /
+
+      bindings:
+        bindings:
+          testOutPut:
+            destination: hxy_exchange
+            content-type: application/json
+            default-binder: test
+          testInPut:
+            destination: hxy_exchange
+            content-type: application/json
+            default-binder: test
